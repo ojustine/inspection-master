@@ -9,33 +9,20 @@ import java.math.BigDecimal;
  */
 public class DataRow {
 
-    private BigDecimal cost;
-    private BigDecimal count;
     private String name;
     private BigDecimal volume;
     private BigDecimal weight;
+    private BigDecimal cost;
+    private BigDecimal count;
 
-    public DataRow(BigDecimal cost, BigDecimal count, String name, BigDecimal volume, BigDecimal weight) {
-        this.cost = cost;
-        this.count = count;
+    /*
+     * Параметры теперь в таком же порядке, как в ресурсных файлах
+     */
+    public DataRow(String name, BigDecimal volume, BigDecimal weight, BigDecimal cost, BigDecimal count) {
         this.name = name;
         this.volume = volume;
         this.weight = weight;
-    }
-
-    public BigDecimal getCost() {
-        return cost;
-    }
-
-    public void setCost(BigDecimal cost) {
         this.cost = cost;
-    }
-
-    public BigDecimal getCount() {
-        return count;
-    }
-
-    public void setCount(BigDecimal count) {
         this.count = count;
     }
 
@@ -61,5 +48,21 @@ public class DataRow {
 
     public void setWeight(BigDecimal weight) {
         this.weight = weight;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
+
+    public BigDecimal getCount() {
+        return count;
+    }
+
+    public void setCount(BigDecimal count) {
+        this.count = count;
     }
 }

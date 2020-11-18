@@ -17,24 +17,24 @@ public class TxtReportService extends ReportServiceBase {
         super(args);
     }
 
+    /*
+     * Добавил lineSep вместо "\n" для мультиплатформенности
+     * Теперь таблица сплитуется по любым blank-символам
+     * Убрал бессмысленный лист
+     */
     @Override
     protected DataRow[] getDataRows(String text) {
         var dataRows = new ArrayList<>();
-        var lines = text.split("\n");
+        var lines = text.split(System.lineSeparator());
 
         for (int i = 1; i < lines.length; i++) {
-            var items = lines[i].split("\t");
-            List<String> arrayList = new ArrayList<>();
-            for (int j = 0; j < items.length; j++) {
-                if (!items[j].isEmpty()) {
-                    arrayList.add(items[j]);
-                }
-            }
-            if (arrayList.size() >= 5) {
-                dataRows.add(new DataRow(new BigDecimal(arrayList.get(3)), new BigDecimal(arrayList.get(4)),
-                        arrayList.get(0), new BigDecimal(arrayList.get(1)), new BigDecimal(arrayList.get(2))));
+            var items = lines[i].split("\\s+");
+            if (items.length >= 5) {
+                dataRows.add(new DataRow(items[0], new BigDecimal(items[1]), new BigDecimal(items[2]),
+                        new BigDecimal(items[3]), new BigDecimal(items[4])));
             }
         }
+
         var result = new DataRow[dataRows.size()];
         result = dataRows.toArray(result);
         return result;

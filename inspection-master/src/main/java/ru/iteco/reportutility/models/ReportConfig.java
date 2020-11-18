@@ -18,16 +18,27 @@ public class ReportConfig {
     private boolean costSum;
     private boolean countSum;
 
-    public ReportConfig(boolean withData, boolean withIndex, boolean withTotalVolume, boolean withTotalWeight, boolean volumeSum,
-                        boolean weightSum, boolean costSum, boolean countSum) {
-        this.withData = withData;
-        this.withIndex = withIndex;
-        this.withTotalVolume = withTotalVolume;
-        this.withTotalWeight = withTotalWeight;
-        this.volumeSum = volumeSum;
-        this.weightSum = weightSum;
-        this.costSum = costSum;
-        this.countSum = countSum;
+    private boolean noVolume;
+    private boolean noWeight;
+    private boolean noCost;
+    private boolean noCount;
+
+    /*
+     * Убрал страшный конструктор. Будем присваивать через сеттеры.
+     */
+    public ReportConfig() {
+        this.withData = false;
+        this.withIndex = false;
+        this.withTotalVolume = false;
+        this.withTotalWeight = false;
+        this.volumeSum = false;
+        this.weightSum = false;
+        this.costSum = false;
+        this.countSum = false;
+        this.noVolume = false;
+        this.noWeight = false;
+        this.noCost = false;
+        this.noCount = false;
     }
 
     public boolean isWithData() {
@@ -92,5 +103,37 @@ public class ReportConfig {
 
     public void setCountSum(boolean countSum) {
         this.countSum = countSum;
+    }
+
+    public boolean isNoVolume() {
+        return noVolume;
+    }
+
+    public void setNoVolume(boolean noVolume) {
+        this.noVolume = noVolume;
+    }
+
+    public boolean isNoWeight() {
+        return noWeight;
+    }
+
+    public void setNoWeight(boolean noWeight) {
+        this.noWeight = noWeight;
+    }
+
+    public boolean isNoCost() {
+        return noCost;
+    }
+
+    public void setNoCost(boolean noCost) {
+        this.noCost = noCost;
+    }
+
+    public boolean isNoCount() {
+        return noCount;
+    }
+
+    public void setNoCount(boolean noCount) {
+        this.noCount = noCount;
     }
 }

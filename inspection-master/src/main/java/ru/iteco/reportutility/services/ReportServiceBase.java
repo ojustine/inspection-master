@@ -42,11 +42,28 @@ public abstract class ReportServiceBase implements ReportService {
 
     protected abstract DataRow[] getDataRows(String text);
 
+    /*
+     * Хотел здесь добавить Builder, но всё равно получается такой же список параметров.
+     * Не вижу смысла в лишней прослойке.
+     */
     private ReportConfig parseConfig() {
-        return new ReportConfig(Arrays.asList(args).contains("-withData"), Arrays.asList(args).contains("-withIndex"),
-                Arrays.asList(args).contains("-withTotalVolume"), Arrays.asList(args).contains("-withTotalWeight"),
-                Arrays.asList(args).contains("-volumeSum"), Arrays.asList(args).contains("-weightSum"),
-                Arrays.asList(args).contains("-costSum"), Arrays.asList(args).contains("-countSum"));
+        var params = Arrays.asList(args);
+        var config = new ReportConfig();
+
+        config.setWithData(params.contains("-withData"));
+        config.setWithIndex(params.contains("-withIndex"));
+        config.setWithTotalVolume(params.contains("-withTotalVolume"));
+        config.setWithTotalWeight(params.contains("-withTotalWeight"));
+        config.setVolumeSum(params.contains("-volumeSum"));
+        config.setWeightSum(params.contains("-weightSum"));
+        config.setCostSum(params.contains("-costSum"));
+        config.setCountSum(params.contains("-countSum"));
+        config.setNoVolume(params.contains("-noVolume"));
+        config.setNoWeight(params.contains("-noWeight"));
+        config.setNoCost(params.contains("-noCost"));
+        config.setNoCount(params.contains("-noCount"));
+
+        return config;
     }
 
 }
